@@ -35,7 +35,10 @@ const ActionsListItem = ({
   },
   item,
 }: Props) => {
-  const handleNavigate = useCallback((path: string) => navigate(path), []);
+  const handleNavigate = useCallback(
+    (path: string) => navigate(path),
+    []
+  );
 
   const popoverPlacement = useMemo(() => {
     const offsetSkid = (-1 * removeValueUnits(popoverWidth)) / 2;
@@ -44,10 +47,11 @@ const ActionsListItem = ({
 
   const handleSyntheticEvent = useCallback(
     () => handleNavigate(`/tx/${transactionHash}`),
-    [handleNavigate, transactionHash],
+    [handleNavigate, transactionHash]
   );
 
-  const stopPropagation = (event: { stopPropagation: () => any; }) => event.stopPropagation();
+  const stopPropagation = (event: { stopPropagation: () => any }) =>
+    event.stopPropagation();
 
   const formatTimestamp = (timestamp: number) => {
     const dateParts = new Intl.DateTimeFormat('en-US', {
@@ -56,7 +60,9 @@ const ActionsListItem = ({
       year: 'numeric',
     }).formatToParts(new Date(timestamp));
     const day = dateParts.find((part) => part.type === 'day')?.value;
-    const month = dateParts.find((part) => part.type === 'month')?.value;
+    const month = dateParts.find(
+      (part) => part.type === 'month'
+    )?.value;
     return `${day} ${month}`;
   };
 
@@ -65,6 +71,7 @@ const ActionsListItem = ({
       data-action-id={id}
       data-action-team-id={domainId}
       data-action-type={type}
+      data-testid={`actions-list-item-${id}`}
     >
       <div
         /*
@@ -120,7 +127,7 @@ const ActionsListItem = ({
                   seed={`${username}+${walletAddress}`}
                   data-username={username}
                   data-wallet-address={walletAddress}
-                  size='s'
+                  size="s"
                 />
               </div>
             </InfoPopover>
@@ -128,15 +135,15 @@ const ActionsListItem = ({
         </div>
         <div className={styles.content}>
           <div className={styles.titleWrapper}>
-            <span className={styles.title}>
+            <span className={styles.title} data-testid="actionTitle">
               <ActionTitle action={item} />
             </span>
-            {(typeof status !== 'undefined') && (
+            {typeof status !== 'undefined' && (
               <div className={styles.tagWrapper}>
                 <Tag
                   text={status ? 'Passed' : 'Failed'}
                   appearance={{
-                    theme: status? 'primary' : 'dangerGhost',
+                    theme: status ? 'primary' : 'dangerGhost',
                     colorSchema: status ? 'inverted' : 'plain',
                   }}
                 />
@@ -145,12 +152,19 @@ const ActionsListItem = ({
           </div>
           <div className={styles.meta}>
             {createdAt && (
-              <span className={styles.day}>
+              <span
+                data-testid="createdAt"
+                data-timestamp={createdAt}
+                className={styles.day}
+              >
                 {formatTimestamp(createdAt)}
               </span>
             )}
             {domainName && (
-              <span className={styles.domain}>
+              <span
+                data-testid="domainName"
+                className={styles.domain}
+              >
                 {domainName}
               </span>
             )}

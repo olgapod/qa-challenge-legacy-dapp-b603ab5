@@ -23,13 +23,14 @@ const SpinnerLoader = ({
   loadingText,
 }: Props) => {
   return (
-    <div className={getMainClasses(appearance, styles)}>
+    <div
+      className={getMainClasses(appearance, styles)}
+      data-testid="spinner"
+    >
       <div className={styles.loader} />
       {loadingText && (
         <div className={styles.loadingTextContainer}>
-          <div>
-            {loadingText}
-          </div>
+          <div>{loadingText}</div>
         </div>
       )}
     </div>

@@ -17,7 +17,7 @@ export enum ActionTypes {
   Address = 'ADDRESS',
   Team = 'TEAM',
   Generic = 'GENERIC',
-};
+}
 
 export interface Action {
   id: string;
@@ -32,29 +32,24 @@ export interface Action {
   domainId: number;
   targetDomainId?: number;
   walletAddress?: string;
-  username?: string
-  tokenAddress?: string
-  tokenName?: string
-  tokenSymbol?: string
-  domainName?: string
-  domainColor?: string
-  targetDomainName?: string
-  targetDomainColor?: string
+  username?: string;
+  tokenAddress?: string;
+  tokenName?: string;
+  tokenSymbol?: string;
+  domainName?: string;
+  domainColor?: string;
+  targetDomainName?: string;
+  targetDomainColor?: string;
 }
 
 interface Props {
   items: Action[];
 }
 
-const ActionsList = ({
-  items,
-}: Props) => (
-  <ul className={styles.main}>
+const ActionsList = ({ items }: Props) => (
+  <ul className={styles.main} data-testid="actions-list">
     {items.map((item) => (
-      <ActionsListItem
-        key={item.id}
-        item={item}
-      />
+      <ActionsListItem key={item.id} item={item} />
     ))}
   </ul>
 );

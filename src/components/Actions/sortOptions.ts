@@ -57,7 +57,7 @@ export const ActionTypeFilterOptions = [
     value: ActionTypes.Address,
   },
   {
-    label: 'Teams',
+    label: 'Team',
     value: ActionTypes.Team,
   },
   {

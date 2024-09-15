@@ -39,7 +39,9 @@ const Avatar = ({
   if (children) {
     return (
       <figure
-        className={className ? `${mainClass} ${className}` : mainClass}
+        className={
+          className ? `${mainClass} ${className}` : mainClass
+        }
         title={seed}
       >
         {children}
@@ -61,6 +63,7 @@ const Avatar = ({
       {...props}
     >
       <img
+        data-testid="avatar"
         src={avatar}
         className={styles.image}
         style={imageStyle}
